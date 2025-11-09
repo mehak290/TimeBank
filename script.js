@@ -936,7 +936,7 @@ function handleRequestAction(requestId, actionType) {
 
     // login
     // === GLOBAL ===
-const API_URL = "http://localhost:1500/users";
+const API_URL = "https://timebank-backend-bt2o.onrender.com/users";
 let currentUserEmail = null;
 
 // === OPEN/CLOSE OVERLAYS ===
@@ -1136,3 +1136,4 @@ function renderAbout() {
         </div>
     `;
 }
+
