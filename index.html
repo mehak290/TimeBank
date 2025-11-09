@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade Your Time, Not Money</title>
+    <!-- Favicon: Abstract path/connection icon -->
+    <link id="favicon-link" rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23818CF8' stroke-width='2'%3E%3Cpath d='M3 12h18M12 3v18M10 10l-2 2 2 2M14 10l2 2-2 2'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="style.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+<body class="bg-primary text-primary">
+
+<!-- Navigation Bar -->
+<header class="bg-secondary shadow-lg sticky top-0 z-10 transition duration-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <!-- Updated SVG Logo Container -->
+            <div id="nav-logo-container" class="w-8 h-8 text-accent logo-animation"></div>
+            <span class="text-3xl font-bold text-accent tracking-tight">Time <span class="text-primary font-medium">Bank</span></span>
+        </div>
+        
+        <nav class="hidden md:flex space-x-6 text-secondary font-medium">
+            <!-- Nav links now use high-contrast text and hover -->
+            <a href="#" onclick="renderPage('home')" class="text-primary hover:text-accent transition duration-150">Home</a>
+            <a href="#" onclick="renderPage('dashboard')" class="text-primary hover:text-accent transition duration-150">Dashboard</a>
+            <a href="#" onclick="renderPage('community')" class="text-primary hover:text-accent transition duration-150">Community</a>
+            <a href="#" onclick="renderPage('rewards')" class="text-primary hover:text-accent transition duration-150">Rewards</a>
+            <a href="#" onclick="renderPage('blog')" class="text-primary hover:text-accent transition duration-150">Blog</a>
+            <a href="#" onclick="renderPage('about')" class="text-primary hover:text-accent transition duration-150">About Us</a>
+        </nav>
+
+        <div class="flex items-center space-x-3">
+         
+
+            <!-- Theme Toggle Button -->
+            <button onclick="toggleTheme()" class="flex items-center space-x-2 p-3 rounded-full transition duration-150 bg-gray-200/50 hover:bg-gray-300 dark:bg-gray-700/50 dark:hover:bg-gray-600">
+                <span id="theme-toggle-icon" data-lucide="moon" class="w-5 h-5 text-primary"></span>
+            </button>
+            <button class="flex items-center space-x-2 p-3 bg-indigo-50 text-indigo-600 rounded-full hover:bg-indigo-100 transition duration-150 dark:bg-indigo-900/50 dark:text-indigo-300 dark:hover:bg-indigo-800">
+                <span data-lucide="bell" class="w-5 h-5"></span>
+            </button>
+            <div class="flex items-center space-x-2">
+                <!-- <img id="user-profile-img" class="w-10 h-10 rounded-full object-cover border-2 border-accent" src="https://placehold.co/40x40/1E40AF/ffffff?text=AS" onerror="this.onerror=null;this.src='https://placehold.co/40x40/1E40AF/ffffff?text=U';" alt="User Profile"> -->
+                <span id="user-credits" class="text-lg font-semibold text-primary" display="none">550 Cr.</span>
+                   <div class="auth-buttons">
+                    <button id="navLoginBtn" onclick="openLogin()">Login</button>
+    <button id="navSignupBtn" onclick="openSignup()">Sign-up</button>
+    <span id="welcomeMessage" style="display:none"></span>
+    <button id="navLogoutBtn" style="display:none" onclick="handleLogout()">Logout</button>
+
+    </div> 
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-primary hover:text-accent rounded-lg">
+                <span data-lucide="menu" class="w-6 h-6"></span>
+            </button>
+        </div>
+    </div>
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobile-menu" class="md:hidden hidden bg-secondary shadow-xl pb-2 border-t border-gray-100 dark:border-gray-700">
+        <!-- Text color corrected for dark mode -->
+        <a href="#" onclick="renderPage('home')" class="block px-4 py-2 text-primary hover:bg-gray-100 dark:hover:bg-gray-700">Home</a>
+        <a href="#" onclick="renderPage('dashboard')" class="block px-4 py-2 text-primary hover:bg-gray-100 dark:hover:bg-gray-700">Dashboard</a>
+        <a href="#" onclick="renderPage('community')" class="block px-4 py-2 text-primary hover:bg-gray-100 dark:hover:bg-gray-700">Community</a>
+        <a href="#" onclick="renderPage('rewards')" class="block px-4 py-2 text-primary hover:bg-gray-100 dark:hover:bg-gray-700">Rewards</a>
+        <a href="#" onclick="renderPage('blog')" class="block px-4 py-2 text-primary hover:bg-gray-100 dark:hover:bg-gray-700">Blog</a>
+        <a href="#" onclick="renderPage('about')" class="block px-4 py-2 text-primary hover:bg-gray-100 dark:hover:bg-gray-700">About Us</a>
+    </div>
+    <!-- LOGIN OVERLAY -->
+  <div id="loginOverlay" style="display:none;">
+    <form id="loginForm">
+      <b><h1>Login</h1><br>
+</b>      <input type="email" id="loginEmail" placeholder="Email" required />
+      <input type="password" id="loginPassword" placeholder="Password" required />
+      <button id="loginSubmitBtn" class="lBtn">Login</button>
+      <button type="button" onclick="closeLogin()">Close</button>
+    </form>
+  </div>
+
+  <!-- SIGNUP OVERLAY -->
+  <div id="signupOverlay" style="display:none;">
+    <form id="signupForm">
+      <B><h1>Sign Up</h1></B><br>
+      <input type="email" id="signupEmail" placeholder="Email" required />
+      <input type="password" id="signupPassword" placeholder="Password" required />
+      <button id="signupSubmitBtn">Sign Up</button>
+      <button type="button" onclick="closeSignup()">Close</button>
+    </form>
+  </div><!-- LOGIN OVERLAY -->
+  <div id="loginOverlay" style="display:none;">
+    <form id="loginForm">
+      <h3>Login</h3>
+      <input type="email" id="loginEmail" placeholder="Email" required />
+      <input type="password" id="loginPassword" placeholder="Password" required />
+      <button id="loginSubmitBtn">Login</button>
+      <button type="button" onclick="closeLogin()">Close</button>
+    </form>
+  </div>
+
+  <!-- SIGNUP OVERLAY -->
+  <div id="signupOverlay" style="display:none;">
+    <form id="signupForm">
+      <h3>Sign Up</h3>
+      <input type="email" id="signupEmail" placeholder="Email" required />
+      <input type="password" id="signupPassword" placeholder="Password" required />
+      <button id="signupSubmitBtn">Sign Up</button>
+      <button type="button" onclick="closeSignup()">Close</button>
+    </form>
+  </div>
+</header>
+
+<!-- Main Content Area (SPA Container) -->
+<main id="app" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 min-h-[80vh]">
+    <!-- Pages will be rendered here -->
+</main>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-6 mt-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+        <p>&copy; 2025 Knowledge Exchange Pro. All rights reserved.</p>
+        <p class="text-xs text-gray-400 mt-1">Built with passion for the future of collaborative learning.</p>
+        <div class="mt-2 space-x-4">
+            <a href="#" onclick="renderPage('about')" class="hover:text-indigo-400">About</a>
+            <a href="#" class="hover:text-indigo-400">Privacy Policy</a>
+            <a href="#" class="hover:text-indigo-400">Terms of Service</a>
+        </div>
+    </div>
+</footer>
+
+<!-- Notification Area (for showing custom messages) -->
+<div id="notification-area" class="fixed top-5 right-5 z-50 pointer-events-none"></div>
+  <div id="dashboard-content"></div>
+
+
+<script src="script.js"></script>
+
+<script src="app.js"></script>
+</body>
+</html>

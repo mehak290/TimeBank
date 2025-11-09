@@ -1,0 +1,158 @@
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        :root {
+            --bg-primary: #f7f9fc;    
+            --bg-secondary: #ffffff;  
+            --text-primary: #111827;  
+            --text-secondary: #4b5563;
+            --accent-color: #4F46E5; 
+            --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
+        }
+
+        html.dark {
+            --bg-primary: #0a0e1a;    
+            --bg-secondary: #1a2232;  
+            --text-primary: #e5e7eb;  
+            --text-secondary: #a8a8b8;
+            --accent-color: #818CF8;  
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); 
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary); 
+            color: var(--text-primary);
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .bg-primary { background-color: var(--bg-primary); }
+        .bg-secondary { background-color: var(--bg-secondary); }
+        .text-primary { color: var(--text-primary); }
+        .text-secondary { color: var(--text-secondary); }
+        .text-accent { color: var(--accent-color); }
+
+        #user-credits{
+            display:none;
+        }
+        .card {
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(129, 140, 248, 0.1); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- 2. LOGO */
+        @keyframes subtle-glow {
+            0%, 100% { 
+                filter: drop-shadow(0 0 2px var(--accent-color)) opacity(0.9); 
+            }
+            50% { 
+                filter: drop-shadow(0 0 5px var(--accent-color)) opacity(1);
+            }
+        }
+        .logo-animation {
+            animation: subtle-glow 4s infinite ease-in-out;
+        }
+        
+        /* --- 3. CANVAS INTERACTIVE HERO --- */
+        .interactive-hero {
+            position: relative;
+            overflow: hidden;
+            background-color: #0a0e1a; 
+            border-radius: 1rem;
+        }
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 5rem 0; 
+        }
+        
+        #app > div {
+            display: none;
+        }
+        #app > div.active {
+            display: block;
+        }
+
+        /* overlay login */
+        #loginOverlay,#signupOverlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+#signupForm,#loginForm {
+  background:#a3bcd5f3;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  position: relative;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+
+h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+  color:black;
+  font-family: cursive;
+}
+
+input[type="text"], input[type="password"] {
+  width: 100%;
+  /* padding: 10px; */
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 18px;
+}
+
+button {
+  width:fit-content;
+  background-color:#5295d7ce;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;  
+}
+
+button:hover {
+  background-color:#ccc;
+}
+.login-btn {
+  color:#a3bcd5f3;
+  text-decoration: none;
+  font-weight: 600;
+}
+#navLoginBtn,#navSignupBtn{
+    background-color: #364663;
+    padding: 10PX;
+}
